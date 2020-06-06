@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="D:/idea/maven/apache-maven-3.6.3/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar" />
+
+    <context id="context1">
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/Achievement?useUnicode=true&amp;
+        characterEncoding=utf-8"
+                        userId="root"
+                        password="pywan1314" />
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="springmvc.entity"
+                            targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="src/main/resources" />
+        <javaClientGenerator targetPackage="springmvc.dao"
+                             targetProject="src/main/java" type="XMLMAPPER" />
+
+        <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
+        <table schema="" tableName="%" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+
+
+</generatorConfiguration>

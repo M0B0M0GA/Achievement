@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springmvc.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="springmvc.entity.Teacher">
+    <id column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+    <result column="t_password" jdbcType="VARCHAR" property="tPassword" />
+    <result column="t_sex" jdbcType="VARCHAR" property="tSex" />
+    <result column="t_age" jdbcType="INTEGER" property="tAge" />
+    <result column="t_num" jdbcType="VARCHAR" property="tNum" />
+    <result column="t_tel" jdbcType="INTEGER" property="tTel" />
+    <result column="t_address" jdbcType="VARCHAR" property="tAddress" />
+    <result column="t_birthday" jdbcType="DATE" property="tBirthday" />
+    <result column="t_mail" jdbcType="VARCHAR" property="tMail" />
+    <result column="t_captcha" jdbcType="VARCHAR" property="tCaptcha" />
+    <collection property="courseList" ofType="course">
+      <id column="c_id" jdbcType="INTEGER" property="cId" />
+      <result column="c_name" jdbcType="VARCHAR" property="cName" />
+      <result column="c_tid" jdbcType="INTEGER" property="cTid" />
+      <collection property="scoreList" ofType="score">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="sid" jdbcType="INTEGER" property="sid" />
+        <result column="cid" jdbcType="INTEGER" property="cid" />
+        <result column="score" jdbcType="REAL" property="score" />
+        <association property="student" javaType="student">
+          <id column="s_id" jdbcType="INTEGER" property="sId" />
+          <result column="s_name" jdbcType="VARCHAR" property="sName" />
+          <result column="s_password" jdbcType="VARCHAR" property="sPassword" />
+          <result column="s_sex" jdbcType="VARCHAR" property="sSex" />
+          <result column="s_age" jdbcType="INTEGER" property="sAge" />
+          <result column="s_num" jdbcType="VARCHAR" property="sNum" />
+          <result column="s_tel" jdbcType="INTEGER" property="sTel" />
+          <result column="s_address" jdbcType="VARCHAR" property="sAddress" />
+          <result column="s_birthday" jdbcType="DATE" property="sBirthday" />
+          <result column="s_mail" jdbcType="VARCHAR" property="sMail" />
+          <result column="s_captcha" jdbcType="VARCHAR" property="sCaptcha" />
+        </association>
+      </collection>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    t_id, t_name, t_password, t_sex, t_age, t_num, t_tel, t_address, t_birthday, t_mail, 
+    t_captcha
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where t_id = #{tId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where t_id = #{tId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="springmvc.entity.Teacher">
+    insert into teacher (t_id, t_name, t_password, 
+      t_sex, t_age, t_num, t_tel, 
+      t_address, t_birthday, t_mail, 
+      t_captcha)
+    values (#{tId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tPassword,jdbcType=VARCHAR}, 
+      #{tSex,jdbcType=VARCHAR}, #{tAge,jdbcType=INTEGER}, #{tNum,jdbcType=VARCHAR}, #{tTel,jdbcType=INTEGER}, 
+      #{tAddress,jdbcType=VARCHAR}, #{tBirthday,jdbcType=DATE}, #{tMail,jdbcType=VARCHAR}, 
+      #{tCaptcha,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="springmvc.entity.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tName != null">
+        t_name,
+      </if>
+      <if test="tPassword != null">
+        t_password,
+      </if>
+      <if test="tSex != null">
+        t_sex,
+      </if>
+      <if test="tAge != null">
+        t_age,
+      </if>
+      <if test="tNum != null">
+        t_num,
+      </if>
+      <if test="tTel != null">
+        t_tel,
+      </if>
+      <if test="tAddress != null">
+        t_address,
+      </if>
+      <if test="tBirthday != null">
+        t_birthday,
+      </if>
+      <if test="tMail != null">
+        t_mail,
+      </if>
+      <if test="tCaptcha != null">
+        t_captcha,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tName != null">
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPassword != null">
+        #{tPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tAge != null">
+        #{tAge,jdbcType=INTEGER},
+      </if>
+      <if test="tNum != null">
+        #{tNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tTel != null">
+        #{tTel,jdbcType=INTEGER},
+      </if>
+      <if test="tAddress != null">
+        #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tBirthday != null">
+        #{tBirthday,jdbcType=DATE},
+      </if>
+      <if test="tMail != null">
+        #{tMail,jdbcType=VARCHAR},
+      </if>
+      <if test="tCaptcha != null">
+        #{tCaptcha,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="springmvc.entity.Teacher">
+    update teacher
+    <set>
+      <if test="tName != null">
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPassword != null">
+        t_password = #{tPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        t_sex = #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tAge != null">
+        t_age = #{tAge,jdbcType=INTEGER},
+      </if>
+      <if test="tNum != null">
+        t_num = #{tNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tTel != null">
+        t_tel = #{tTel,jdbcType=INTEGER},
+      </if>
+      <if test="tAddress != null">
+        t_address = #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tBirthday != null">
+        t_birthday = #{tBirthday,jdbcType=DATE},
+      </if>
+      <if test="tMail != null">
+        t_mail = #{tMail,jdbcType=VARCHAR},
+      </if>
+      <if test="tCaptcha != null">
+        t_captcha = #{tCaptcha,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springmvc.entity.Teacher">
+    update teacher
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_password = #{tPassword,jdbcType=VARCHAR},
+      t_sex = #{tSex,jdbcType=VARCHAR},
+      t_age = #{tAge,jdbcType=INTEGER},
+      t_num = #{tNum,jdbcType=VARCHAR},
+      t_tel = #{tTel,jdbcType=INTEGER},
+      t_address = #{tAddress,jdbcType=VARCHAR},
+      t_birthday = #{tBirthday,jdbcType=DATE},
+      t_mail = #{tMail,jdbcType=VARCHAR}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+
+    <select id="getTeacherTotal" resultType="java.lang.Integer">
+    select count(*) from teacher
+    </select>
+
+    <select id="teacherList" resultMap="BaseResultMap">
+        SELECT * FROM teacher ORDER BY t_id desc limit #{param1}, #{param2}
+    </select>
+
+
+  <select id="selectStudentByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    teacher.t_id as t_id,teacher.t_name as t_name,
+    course.c_id as c_id,course.c_name as c_name,
+    student.s_id as s_id, student.s_name as s_name,
+    score.score as score
+    from score,teacher,course,student
+    where teacher.t_id = #{teacherId,jdbcType=INTEGER}and course.tid = teacher.t_cid
+    and student.s_id = score.sid and score.cid = course.c_id
+  </select>
+
+  <select id="selectCourseByTeacher" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    teacher.t_id as t_id,teacher.t_name as t_name,
+    course.c_id as c_id,course.c_name as c_name
+    from teacher,course
+    where teacher.t_id = #{tId,jdbcType=INTEGER}and course.cid = teacher.t_cid
+  </select>
+
+  <select id="selectTeacherByMail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where t_mail = #{tMail,jdbcType=VARCHAR}
+  </select>
+</mapper>
