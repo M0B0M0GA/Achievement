@@ -114,7 +114,7 @@ public class StudentController {
 
         studentService.insert(student);
 
-        return "listStudent";
+        return "addStudent";
     }
 
     @RequestMapping(value = "/listStudent")

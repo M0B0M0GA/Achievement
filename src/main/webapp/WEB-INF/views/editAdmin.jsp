@@ -13,7 +13,7 @@
             });
         });
     </script>
-    <title>学生管理页面 - 编辑页面</title>
+    <title>管理员管理页面 - 编辑页面</title>
 </head>
 <body>
 <div class="layui-body">
@@ -21,13 +21,13 @@
         <br>
         <br>
         <div class="layui-form-item">
-            <p><h2>修改学生</h2></p>
+            <p><h2>修改管理员</h2></p>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">学号：</label>
+            <label class="layui-form-label">编号：</label>
             <div class="layui-input-inline">
                 <input type="text" name="id" id="id"
-                       required  lay-verify="required" placeholder="请在这里输入学号" value="${update_Admin.aId}" class="layui-input">
+                       required  lay-verify="required" placeholder="请在这里输入编号" value="${update_Admin.aId}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

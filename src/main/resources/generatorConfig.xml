@@ -36,4 +36,5 @@
                enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>
 
+
 </generatorConfiguration>
