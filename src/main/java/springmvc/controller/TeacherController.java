@@ -58,7 +58,7 @@ public class TeacherController {
         // String 类型按照 yyyy-MM-dd 的格式转换为 java.util.Date 类
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            birthday = simpleDateFormat.parse(request.getParameter("teacherBirth"));
+            birthday = simpleDateFormat.parse(request.getParameter("teacher-birth"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
